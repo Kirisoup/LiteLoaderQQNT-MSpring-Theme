@@ -262,6 +262,11 @@ html:not(.mspring_background_plugin_enabled) .chat-input-area {
 /* 深色模式 */
 @media (prefers-color-scheme: dark) {
 
+    /* opacity slider now wont fuck your eye while in darkmode */
+    #app {
+        background: #000 !important;
+    }    
+
     /* Should change navbar bg, and the general semitranlucent bg of many elements */
     /* definately very off from the approach this theme uses to style stuff but me lazy ass */
     :root {

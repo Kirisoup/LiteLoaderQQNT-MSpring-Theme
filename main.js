@@ -56,10 +56,11 @@ function updateStyle(webContents, settingsPath) {
     const themeColorDark2 = RGBToHex(blendColors(hexToRGB(themeColor), [0, 0, 0], 0.2));
     const backgroundOpacity = config.backgroundOpacity;
     // 将backgroundOpacity(是个0-100的整数值)转为两位hex值作为RGBA的透明度（注意不要出现小数）
-    // const backgroundOpacityHex = Math.round(backgroundOpacity * 2.55).toString(16).padStart(2, "0");
+    const backgroundOpacityHex = Math.round(backgroundOpacity * 2.55).toString(16).padStart(2, "0");
+    const backgroundOpacityHexT = Math.round(backgroundOpacity * 1.27).toString(16).padStart(2, "0");
     // Blend black and white tone to theme color to create a more colorful background
-    const backgroundColorLight = RGBToHex(blendColors(hexToRGB(themeColor), [255, 255, 255], 0.7));
-    const backgroundColorDark = RGBToHex(blendColors(hexToRGB(themeColor), [0, 0, 0], 0.7));
+    const backgroundColorLight = RGBToHex(blendColors(hexToRGB(themeColor), [255, 255, 255], 0.6));
+    const backgroundColorDark = RGBToHex(blendColors(hexToRGB(themeColor), [0, 0, 0], 0.75));
 
 
     const csspath = path.join(__dirname, "src/style.css");
@@ -72,15 +73,13 @@ function updateStyle(webContents, settingsPath) {
             --theme-color: ${themeColor};
             --theme-color-dark1: ${themeColorDark1};
             --theme-color-dark2: ${themeColorDark2};
-            --background-color-light: ${backgroundColorLight};
-            --background-color-light-t: ${backgroundColorLight}80;
-            --background-color-dark: ${backgroundColorDark};
-            --background-color-dark-t: ${backgroundColorDark}80;
+            --background-color-light: ${backgroundColorLight}${backgroundOpacityHex};
+            --background-color-light-t: ${backgroundColorLight}${backgroundOpacityHexT};
+            --background-color-dark: ${backgroundColorDark}${backgroundOpacityHex};
+            --background-color-dark-t: ${backgroundColorDark}${backgroundOpacityHexT};
             --theme-tag-color: ${themeColor + "3f"};
             --text-selected-color: ${themeColor + "7f"};
         }`
-        // can't understand the way opacity slider work (seems to not work well with lite_tools' bg)
-        // using constant as opacity cause me no thoughts ; ;
 
         webContents.send(
             "LiteLoader.mspring_theme.updateStyle",
