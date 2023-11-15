@@ -118,6 +118,14 @@ html:not(.mspring_background_plugin_enabled) .chat-input-area {
 /* 浅色模式 */
 @media (prefers-color-scheme: light) {
 
+    /* Should change navbar bg, and the general semitranlucent bg of many elements */
+    /* definately very off from the approach this theme uses to style stuff but me lazy ass */
+    :root {
+        --background-color-05: var(--background-color-light-t) !important;
+        --background-color-03: var(--background-color-light-t) !important;
+    }
+
+
     /* 多选消息的按钮 */
     .forward-ops .op-icon {
         background: #00000010 !important;
@@ -253,6 +261,14 @@ html:not(.mspring_background_plugin_enabled) .chat-input-area {
 
 /* 深色模式 */
 @media (prefers-color-scheme: dark) {
+
+    /* Should change navbar bg, and the general semitranlucent bg of many elements */
+    /* definately very off from the approach this theme uses to style stuff but me lazy ass */
+    :root {
+        --background-color-05: var(--background-color-dark-t) !important;
+        --background-color-03: var(--background-color-dark-t) !important;
+    }
+
 
     /* 多选消息的按钮 */
     .forward-ops .op-icon {
